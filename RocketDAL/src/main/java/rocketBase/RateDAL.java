@@ -20,7 +20,8 @@ public class RateDAL {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		
-		ArrayList<RateDomainModel> alRates = new ArrayList<RateDomainModel>();		
+		ArrayList<RateDomainModel> alRates = new ArrayList<RateDomainModel>();	
+		
 		
 		try {
 			tx = session.beginTransaction();	
@@ -30,11 +31,14 @@ public class RateDAL {
 			//			example can be found here:
 			//  		http://www.tutorialspoint.com/hibernate/hibernate_query_language.htm			
 			//List lstRates = session.createQuery("FROM RateDomainModel r Order By r.iMinCreditScore").list();
-			List lstRates = session.createQuery("FROM RateDomainModel").list();
+			//List lstRates = session.createQuery("FROM RateDomainModel").list();  OLD ONE
+			String hql = "FROM RateDomainModel r ORDER BY r.iMinCreditScore ASC";
+			List lstRates = session.createQuery(hql).list();
+
 
 			for (Iterator iterator = lstRates.iterator(); iterator.hasNext();) {
 				RateDomainModel rte = (RateDomainModel) iterator.next();
-				alRates.add(rte);
+					alRates.add(rte);			
 			}
 			
 			tx.commit();

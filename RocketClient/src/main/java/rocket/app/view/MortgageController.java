@@ -40,8 +40,6 @@ public class MortgageController {
 	
 	private MainApp mainApp;
 	private double mp;
-	
-	private LoanRequest lq;
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
